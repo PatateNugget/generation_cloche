@@ -7,8 +7,8 @@ import pyaudacity as pa
 
 parser = ap.ArgumentParser()
 parser.add_argument("-a","--attaque",type=float)
-parser.add_argument("-m","--maintien",type=float)
 parser.add_argument("-d","--declin",type=float)
+parser.add_argument("-m","--maintien",type=float)
 parser.add_argument("-r","--relache",type=float)
 parser.add_argument("-p","--partiel",action=ap.BooleanOptionalAction)
 parser.add_argument("-f","--fondamentale",type=int)
@@ -46,7 +46,7 @@ pa.do('MixAndRender')
 
 #### Travail de l'enveloppe
 
-cl.asdr(attack=attaque,
-        sustain=maintien,
+cl.adsr(attack=attaque,
         decline=declin,
+        sustain=maintien,
         release=relache)

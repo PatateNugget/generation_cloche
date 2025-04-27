@@ -49,8 +49,8 @@ def fading_nl(duree,seuil,iterations):
     for index, ligne in fading.iterrows():
         pa.do(f'SetEnvelope: Time="{ligne["temps"]}" Value="{ligne["amp_fade"]}"')
 
-def asdr(attack=0,sustain=1,decline=2,release=3):
-    """ Travaille l'enveloppe de sorte qu'elle colle au modèle ASDR.
+def adsr(attack=0,decline=1,sustain=2,release=3):
+    """ Travaille l'enveloppe de sorte qu'elle colle au modèle ADSR.
     Les paramètres sont des temps en secondes """
     
     # Pour le moment on donne des valeurs arbitraires aux amplitudes des différentes parties 
@@ -58,7 +58,7 @@ def asdr(attack=0,sustain=1,decline=2,release=3):
 
     pa.do(f'SetEnvelope: Time="0" Value="0.5"')
     pa.do(f'SetEnvelope: Time="{attack}" Value="1"')
-    pa.do(f'SetEnvelope: Time="{attack+sustain}" Value="1"')
-    pa.do(f'SetEnvelope: Time="{attack+sustain+decline}" Value="0.9"')
-    pa.do(f'SetEnvelope: Time="{attack+sustain+decline+release}" Value="0"')
+    pa.do(f'SetEnvelope: Time="{attack+decline}" Value="0.7"')
+    pa.do(f'SetEnvelope: Time="{attack+decline+sustain}" Value="0.7"')
+    pa.do(f'SetEnvelope: Time="{attack+decline+sustain+release}" Value="0"')
 
